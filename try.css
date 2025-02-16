@@ -1,0 +1,84 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: blueviolet;
+    overflow: hidden;
+}
+
+.gameContainer {
+    background-image: url(bg.webp);
+    background-repeat: repeat-x; /* Allows continuous scrolling */
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero {
+    background-image: url(run.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 180px; /* Increased size */
+    height: 220px; /* Increased size */
+    position: absolute;
+    bottom: 2rem;
+    left: 3rem;
+    transition: bottom 0.1s linear, left 0.1s linear;
+}
+
+.hero.jump {
+    background: url('jump.png') no-repeat center/cover;
+}
+
+.obstacle {
+    background-image: url(mashroom.png);
+    position: absolute;
+    width: 140px; /* Increased size */
+    height: 180px; /* Increased size */
+    background-size: cover;
+    bottom: 6rem;
+    left: 100vw;
+    animation: obstacleMove 5s linear infinite;
+}
+
+#scoreCount{
+    font-size: 2rem;
+
+}
+
+.gameOver {
+    visibility: hidden;
+    font-size: 8rem;
+    color: rgb(6, 1, 0);
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.gameContainer.moving {
+    animation: moveBackground 5s linear infinite;
+}
+
+
+@keyframes obstacleMove {
+    0% { left: 100vw; }
+    100% { left: -5vw; }
+}
+/* dont use it */
+@keyframes moveBackground {
+    from { background-position: 0 0; }
+    to { background-position: -200vw 0; } /* Moves background leftward */
+}
+
+.bgMove {
+    animation: moveBackground 45s linear infinite;
+}
+
+.stopBg{
+    animation: none;
+}
