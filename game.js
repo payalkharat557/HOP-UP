@@ -12,7 +12,14 @@ audioj = new Audio('jump-sound.mpeg.mp3');
 setTimeout(() => {
     audio.play()
 }, 1000);
+
+let audioStarted = false
+
 document.addEventListener("keydown", function (event) {
+    if (!audioStarted) {
+        audio.play().catch(error => console.log("Audio autoplay blocked:", error));
+        audioStarted = true;
+    }
     if (event.key === "ArrowUp") {
         jump();
     } else if (event.key === "ArrowRight") {
