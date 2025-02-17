@@ -137,7 +137,7 @@ setInterval(() => {
     ) {
         gameOver.style.visibility = "visible";
         obstacle.style.animation = "none";
-        alert("Game Over! Refresh to restart.");
+        
         audiogo.play();
         setTimeout(() => {
             audio.pause();
