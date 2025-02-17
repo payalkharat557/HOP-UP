@@ -1,6 +1,17 @@
 let score = 0;
 let cross = true;
 
+audio = new Audio('bg-sound.mpeg.mp3');
+audio.loop = true;
+audio.play();
+audiogo = new Audio('Game-over.mpeg.mp3');
+setTimeout(() => {
+    audio.play()
+}, 1000);
+audioj = new Audio('jump-sound.mpeg.mp3');
+setTimeout(() => {
+    audio.play()
+}, 1000);
 document.addEventListener("keydown", function (event) {
     if (event.key === "ArrowUp") {
         jump();
@@ -56,7 +67,10 @@ function jump() {
     // Apply jump force
     velocity = jumpForce;
     isJumping = true;
-
+    audioj.play();
+        setTimeout(() => {
+            
+        }, 1000);
     // Move forward slightly when jumping
     let heroPosition = hero.offsetLeft;
     if (heroPosition < window.innerWidth - 150) {
@@ -92,6 +106,7 @@ function moveRight() {
     let heroPosition = hero.offsetLeft;
     if (heroPosition < window.innerWidth - 150) {
         hero.style.left = heroPosition + 50 + "px";
+        hero.style.transform = "scaleX(1)";
     }
 }
 
@@ -100,6 +115,7 @@ function moveLeft() {
     let heroPosition = hero.offsetLeft;
     if (heroPosition > 10) {
         hero.style.left = heroPosition - 20 + "px";
+        hero.style.transform = "scaleX(-1)";
     }
 }
 
@@ -122,6 +138,10 @@ setInterval(() => {
         gameOver.style.visibility = "visible";
         obstacle.style.animation = "none";
         alert("Game Over! Refresh to restart.");
+        audiogo.play();
+        setTimeout(() => {
+            audio.pause();
+        }, 1000);
     } 
     // Increase score only if the hero has completely passed the obstacle
     else if (heroRect.left > obstacleRect.right && cross) {
